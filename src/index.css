@@ -2,20 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: #164b60 #03c988;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: #164b60 #4fc0d0;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 6px;
+	cursor: pointer;
+}
+
+*::-webkit-scrollbar-track {
+	background: #03c988;
+	cursor: pointer;
+	/* border-radius: 5px; */
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: #164b60;
+	border-radius: 10px;
 }
 
 body {
-    font-family: 'Bagel Fat One', cursive;
-    color: #fff;
+	font-family: 'Bagel Fat One', cursive;
+	color: #fff;
 }
 
-  
-  span.animate-ripple {
-     transform: scale(0);
-  }
-  
+span.animate-ripple {
+	transform: scale(0);
+}

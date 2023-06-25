@@ -1,37 +1,37 @@
-import { useLayoutEffect, useRef } from 'react';
-import createRipple from '../../utils/ripplesEffect';
-import Ripple from '../ripple/Ripple';
+import { useEffect, useRef } from 'react';
 
 type navbarBtnType = {
-    label: string;
-    setActive: (arg: DOMRect) => void;
-    initial: boolean;
+	label: string;
+	setActive: (arg: DOMRect) => void;
+	initial: boolean;
 };
 
 NavbarBtn.defaultProps = {
-    initial: false,
+	initial: false,
 };
 function NavbarBtn({ label, setActive, initial }: navbarBtnType) {
-    const ref = useRef<HTMLButtonElement | null>(null);
+	const ref = useRef<HTMLButtonElement | null>(null);
 
-    useLayoutEffect(() => {
-        if (initial && ref.current) {
-            setActive(ref.current.getBoundingClientRect());
-        }
-    }, [initial, setActive]);
-    return (
-            <button
-                ref={ref}
-                onClick={(e) => {
-                    const target = e.target as HTMLElement;
-                    createRipple(e);
-                    setActive(target.getBoundingClientRect());
-                }}
-                className="px-3 py-2 rounded-3xl relative animateBtn text-xl overflow-hidden transition-colors duration-[400ms] z-20"
-            >
-                {label}
-            </button>
-    );
+	useEffect(() => {
+		if (initial && ref.current) {
+			setActive(ref.current.getBoundingClientRect());
+		}
+	}, [initial, setActive]);
+	return (
+		<div>
+			<button
+				ref={ref}
+				onClick={(e) => {
+					const target = e.target as HTMLElement;
+					// createRipple(e);
+					setActive(target.getBoundingClientRect());
+				}}
+				className='px-3 py-2 rounded-3xl relative text-xl overflow-hidden transition-colors duration-[400ms] z-20'
+			>
+				{label}
+			</button>
+		</div>
+	);
 }
 
 export default NavbarBtn;

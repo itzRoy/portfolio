@@ -1,23 +1,35 @@
-function createRipple(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    const button = event.target;
-    if (button instanceof HTMLButtonElement) {
-        const circle = document.createElement('span');
-        const diameter = Math.max(button.clientWidth, button.clientHeight);
-        const radius = diameter / 2;
+function createRipple(
+	event: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>
+) {
+	const button = event.target;
+	if (button instanceof HTMLButtonElement || button instanceof HTMLDivElement) {
+		const circle = document.createElement('span');
+		const diameter = Math.max(button.clientWidth, button.clientHeight);
+		const radius = diameter / 2;
 
-        circle.style.width = circle.style.height = `${diameter}px`;
-        circle.style.left = `${event.clientX - button?.offsetLeft - radius}px`;
-        circle.style.top = `${event.clientY - button?.offsetTop - radius}px`;
-        circle.classList.add(...['animate-ripple', 'absolute', 'bg-white', 'rounded-[50%]']);
+		circle.style.width = circle.style.height = `${diameter}px`;
+		circle.style.left = `${event.clientX - button?.offsetLeft - radius}px`;
 
-        const ripple = button.getElementsByClassName('animate-ripple')[0];
+		circle.style.top = `${event.clientY - button?.offsetTop - radius}px`;
+		circle.classList.add(
+			...[
+				'animate-ripple',
+				'absolute',
+				'bg-white',
+				'rounded-[50%]',
+				'z-30',
+				'opacity-40',
+			]
+		);
 
-        if (ripple) {
-            ripple.remove();
-        }
+		const ripple = button.getElementsByClassName('animate-ripple')[0];
 
-        button.appendChild(circle);
-    }
+		if (ripple) {
+			ripple.remove();
+		}
+
+		button.appendChild(circle);
+	}
 }
 
 export default createRipple;
