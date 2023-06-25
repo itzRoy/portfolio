@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bagel Fat One', cursive;
+    color: #fff;
+}
+
+  
+  span.animate-ripple {
+     transform: scale(0);
+  }
+  
