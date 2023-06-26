@@ -15,8 +15,16 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 		const [cursorY, setCursorY] = useState(0);
 
 		const magneticPullX = 0.4;
-		const magneticPullY = 0.9;
+		const magneticPullY = 0.2;
 		const [isHovering, setIsHovering] = useState(false);
+
+		const setXs = () => {
+			const rect = buttonRef.current?.getBoundingClientRect();
+			setWidth(rect?.width || 0);
+			setHeight(rect?.height || 0);
+			setLeft(rect?.left || 0);
+			setTop(rect?.top || 0);
+		};
 
 		const onEnter = () => {
 			gsap.to(buttonRef.current, {
@@ -27,14 +35,16 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 			});
 		};
 
-		const onLeave = () => {
+		function onLeave() {
+			console.log('leave');
+
 			gsap.to(buttonRef.current, {
 				x: 0,
 				y: 0,
 				duration: 0.7,
 				ease: Elastic.easeOut.config(1.1, 0.5),
 			});
-		};
+		}
 
 		useEffect(() => {
 			const handleMouseMove = (e: MouseEvent) => {
@@ -50,7 +60,8 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 				setY(cursorY - center.y);
 
 				const distance = Math.sqrt(x * x + y * y);
-				const hoverArea = isHovering ? 0.6 : 0.5;
+				const hoverArea = isHovering ? 0.65 : 0.5;
+				console.log({ center, distance, hoverArea });
 
 				if (distance < width * hoverArea) {
 					if (!isHovering) {
@@ -88,17 +99,15 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 		]);
 
 		useEffect(() => {
-			const rect = buttonRef.current?.getBoundingClientRect();
-			setWidth(rect?.width || 0);
-			setHeight(rect?.height || 0);
-			setLeft(rect?.left || 0);
-			setTop(rect?.top || 0);
+			setXs();
+			window.addEventListener('scrollend', setXs);
+			return () => window.removeEventListener('scrollend', setXs);
 		}, [buttonRef.current]);
 
 		return (
 			<div
 				ref={buttonContainer}
-				className='w-full h-full flex items-start justify-center'
+				className='sm:w-auto md:w-[500px] md:h-[500px] md:mt-0 mt-10 flex items-center justify-center'
 			>
 				<WrappedComponent<HTMLButtonElement | any> ref={buttonRef} />
 			</div>

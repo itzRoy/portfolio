@@ -32,6 +32,9 @@
 	border-radius: 10px;
 }
 
+html {
+	scroll-behavior: smooth;
+}
 body {
 	font-family: 'Bagel Fat One', cursive;
 	color: #fff;

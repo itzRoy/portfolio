@@ -12,15 +12,15 @@ const DownloadCvBtn = React.forwardRef<HTMLButtonElement | null>(
 				className='px-10 py-5 rounded-3xl animateBtn bg-secondary-dark relative text-xl overflow-hidden transition-colors duration-[400ms]'
 				onClick={(e) => {
 					createRipple(e);
+					console.log('click');
 				}}
 			>
-				<div className='flex gap-2'>
-					<p>Donwload Resume</p>
-					<img
-						alt='download-icon'
-						src={downloadIcon}
-					/>
-				</div>
+				<span>Donwload Resume</span>
+				<img
+					className='inline-block ml-4'
+					alt='download-icon'
+					src={downloadIcon}
+				/>
 			</button>
 		);
 	}

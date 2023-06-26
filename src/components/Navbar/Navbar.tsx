@@ -4,8 +4,17 @@ import logo from '../../assets/logo.svg';
 import { useMotionValue, useScroll } from 'framer-motion';
 import { motion } from 'framer-motion';
 
-const Navbar: React.FC = () => {
-	const [activePosition, setActviePosition] = useState<DOMRect | undefined>();
+type navBarType = {
+	activePosition?: DOMRect;
+	setActviePosition: (arg: DOMRect) => void;
+	setIsScrollingIntoView: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Navbar = ({
+	activePosition,
+	setActviePosition,
+	setIsScrollingIntoView,
+}: navBarType) => {
 	const { scrollY } = useScroll();
 	const height = useMotionValue(90);
 	const backgroundColor = useMotionValue('#164b60');
@@ -50,19 +59,22 @@ const Navbar: React.FC = () => {
 				<NavbarBtn
 					label='About'
 					setActive={setActviePosition}
-					initial
+					setIsScrollingIntoView={setIsScrollingIntoView}
 				/>
 				<NavbarBtn
 					label='Skills'
 					setActive={setActviePosition}
+					setIsScrollingIntoView={setIsScrollingIntoView}
 				/>
 				<NavbarBtn
 					label='Projects'
 					setActive={setActviePosition}
+					setIsScrollingIntoView={setIsScrollingIntoView}
 				/>
 				<NavbarBtn
-					label='contact'
+					label='Contact'
 					setActive={setActviePosition}
+					setIsScrollingIntoView={setIsScrollingIntoView}
 				/>
 			</div>
 		</motion.div>

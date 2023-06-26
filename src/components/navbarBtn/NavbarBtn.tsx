@@ -1,36 +1,33 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 type navbarBtnType = {
 	label: string;
 	setActive: (arg: DOMRect) => void;
-	initial: boolean;
+	setIsScrollingIntoView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-NavbarBtn.defaultProps = {
-	initial: false,
-};
-function NavbarBtn({ label, setActive, initial }: navbarBtnType) {
+function NavbarBtn({
+	label,
+	setActive,
+	setIsScrollingIntoView,
+}: navbarBtnType) {
 	const ref = useRef<HTMLButtonElement | null>(null);
 
-	useEffect(() => {
-		if (initial && ref.current) {
-			setActive(ref.current.getBoundingClientRect());
-		}
-	}, [initial, setActive]);
 	return (
-		<div>
-			<button
-				ref={ref}
-				onClick={(e) => {
-					const target = e.target as HTMLElement;
-					// createRipple(e);
-					setActive(target.getBoundingClientRect());
-				}}
-				className='px-3 py-2 rounded-3xl relative text-xl overflow-hidden transition-colors duration-[400ms] z-20'
-			>
-				{label}
-			</button>
-		</div>
+		<button
+			ref={ref}
+			id={label}
+			onClick={(e) => {
+				const target = e.target as HTMLElement;
+				setIsScrollingIntoView(true);
+				setActive(target.getBoundingClientRect());
+				document.getElementById('#' + label)?.scrollIntoView();
+				setTimeout(() => setIsScrollingIntoView(false), 500);
+			}}
+			className='px-3 py-2 rounded-3xl relative text-xl overflow-hidden transition-colors duration-[400ms] z-20'
+		>
+			{label}
+		</button>
 	);
 }
 
