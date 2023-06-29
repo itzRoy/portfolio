@@ -1,6 +1,5 @@
 import profile from '../../assets/profile.png';
 import DownloadCvBtn from '../downloadCvBtn/DownloadCvBtn';
-
 function About() {
 	return (
 		<section
@@ -34,7 +33,7 @@ function About() {
 						and more recently with desktop publishing software like Aldus
 						PageMaker including versions of Lorem Ipsum.
 					</p>
-					<div className='justify-self-center md:justify-self-end'>
+					<div className='self-start md:self-end'>
 						<DownloadCvBtn />
 					</div>
 				</div>

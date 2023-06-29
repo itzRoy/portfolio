@@ -1,10 +1,28 @@
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import About from './components/about/About';
+import Home from './components/home/Home';
 
 function App() {
 	const [activeNav, setActiveNav] = useState<DOMRect>();
 	const [isScrollingIntoView, setIsScrollingIntoView] = useState(false);
+
+	document.documentElement.classList.remove('dark');
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setIsScrollingIntoView(true);
+			setTimeout(() => {
+				setIsScrollingIntoView(false);
+			}, 100);
+		});
+		return () =>
+			window.removeEventListener('resize', () => {
+				setIsScrollingIntoView(true);
+				setTimeout(() => {
+					setIsScrollingIntoView(false);
+				}, 100);
+			});
+	}, []);
 
 	const observer = new IntersectionObserver(
 		(entries) => {
@@ -17,7 +35,7 @@ function App() {
 			});
 		},
 		{
-			threshold: 0.95,
+			threshold: 0.9,
 		}
 	);
 
@@ -40,7 +58,7 @@ function App() {
 				activePosition={activeNav}
 				setActviePosition={setActiveNav}
 			/>
-
+			<Home />
 			<About />
 
 			<section

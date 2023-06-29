@@ -12,7 +12,6 @@ const DownloadCvBtn = React.forwardRef<HTMLButtonElement | null>(
 				className='px-10 py-5 rounded-3xl animateBtn bg-secondary-dark relative text-xl overflow-hidden transition-colors duration-[400ms]'
 				onClick={(e) => {
 					createRipple(e);
-					console.log('click');
 				}}
 			>
 				<span>Donwload Resume</span>

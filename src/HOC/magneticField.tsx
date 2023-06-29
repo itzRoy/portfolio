@@ -36,8 +36,6 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 		};
 
 		function onLeave() {
-			console.log('leave');
-
 			gsap.to(buttonRef.current, {
 				x: 0,
 				y: 0,
@@ -61,7 +59,6 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 
 				const distance = Math.sqrt(x * x + y * y);
 				const hoverArea = isHovering ? 0.65 : 0.5;
-				console.log({ center, distance, hoverArea });
 
 				if (distance < width * hoverArea) {
 					if (!isHovering) {
@@ -107,7 +104,7 @@ const withMagneticField = (WrappedComponent: HTMLButtonElement | any) => {
 		return (
 			<div
 				ref={buttonContainer}
-				className='sm:w-auto md:w-[500px] md:h-[500px] md:mt-0 mt-10 flex items-center justify-center'
+				className='sm:w-auto md:h-[500px] md:mt-0 mt-10 flex items-center z-50'
 			>
 				<WrappedComponent<HTMLButtonElement | any> ref={buttonRef} />
 			</div>

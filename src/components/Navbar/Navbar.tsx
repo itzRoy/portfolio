@@ -1,6 +1,6 @@
 import NavbarBtn from '../navbarBtn/NavbarBtn';
-import { useEffect, useState } from 'react';
-import logo from '../../assets/logo.svg';
+import { useEffect } from 'react';
+import Logo from '../../assets/logo';
 import { useMotionValue, useScroll } from 'framer-motion';
 import { motion } from 'framer-motion';
 
@@ -36,45 +36,56 @@ const Navbar = ({
 	return (
 		<motion.div
 			style={{ height, backgroundColor }}
-			className='flex w-full transition ease-in duration-300 fixed left-0 inset-x-0 bg-secondaryLight px-4 items-center top-0 z-50'
+			className='draw-to-canvas flex w-full transition ease-in duration-300 fixed left-0 inset-x-0 bg-secondaryLight px-4 items-center top-0 z-40'
 		>
-			<div className='w-1/2'>
-				<img
-					src={logo}
-					alt='logo'
-				/>
+			<div
+				style={{
+					width: activePosition?.width,
+					height: activePosition?.height,
+					left: activePosition?.left ? activePosition?.left : 2000,
+				}}
+				className=' animate-opacity bg-secondary z-10 absolute transition-all duration-[500ms]  rounded-3xl'
+			/>
+			<div className='w-1/2 min-w-[46.67px]'>
+				<Logo />
 			</div>
 
-			<div className='flex gap-4 relative'>
-				<div
-					style={{
-						width: activePosition?.width,
-						height: activePosition?.height,
-						left: activePosition?.left
-							? activePosition?.left - document.body.offsetWidth / 2
-							: 0,
-					}}
-					className='bg-secondary z-10 absolute transition-all duration-[500ms]  rounded-3xl'
+			<div className='flex md:gap-4 gap-2 relative px-2'>
+				<NavbarBtn
+					label='Home'
+					setActive={setActviePosition}
+					setIsScrollingIntoView={setIsScrollingIntoView}
+					className='draw-to-canvas animate-slide-top'
+					initial
 				/>
+
 				<NavbarBtn
 					label='About'
 					setActive={setActviePosition}
 					setIsScrollingIntoView={setIsScrollingIntoView}
+					className='draw-to-canvas animate-slide-top '
+					style={{ animationDelay: '100ms' }}
 				/>
 				<NavbarBtn
 					label='Skills'
 					setActive={setActviePosition}
 					setIsScrollingIntoView={setIsScrollingIntoView}
+					className='draw-to-canvas animate-slide-top '
+					style={{ animationDelay: '200ms' }}
 				/>
 				<NavbarBtn
 					label='Projects'
 					setActive={setActviePosition}
 					setIsScrollingIntoView={setIsScrollingIntoView}
+					className='draw-to-canvas animate-slide-top '
+					style={{ animationDelay: '300ms' }}
 				/>
 				<NavbarBtn
 					label='Contact'
 					setActive={setActviePosition}
 					setIsScrollingIntoView={setIsScrollingIntoView}
+					className='draw-to-canvas animate-slide-top'
+					style={{ animationDelay: '400ms' }}
 				/>
 			</div>
 		</motion.div>
