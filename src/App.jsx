@@ -48,8 +48,8 @@ const App = () => {
 
 		return () => observer.disconnect();
 	}, [isScrollingIntoView]);
-console.log(activeNav);
-  return (
+
+	return (
       <div className='relative z-0 bg-transparent'>
 		<Navbar
 				setIsScrollingIntoView={setIsScrollingIntoView}
