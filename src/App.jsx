@@ -1,5 +1,13 @@
-import { About, Contact, Experience, Hero, Navbar, Works, StarsCanvas } from "./components";
-import { useEffect, useState } from "react";
+import {
+	About,
+	Contact,
+	Experience,
+	Hero,
+	Navbar,
+	Works,
+	StarsCanvas,
+} from './components';
+import { useEffect, useState } from 'react';
 
 const App = () => {
 	const [activeNav, setActiveNav] = useState();
@@ -32,17 +40,19 @@ const App = () => {
 			});
 		},
 		{
-			threshold: 0.4,
+			threshold: 0.5,
 		}
 	);
 
 	useEffect(() => {
-		let sectionsSelector = document.querySelectorAll('section')
-		const sections = []
-		sectionsSelector.forEach(sec => {if(sec.id)sections.push(sec)})
+		let sectionsSelector = document.querySelectorAll('section');
+		const sections = [];
+		sectionsSelector.forEach((sec) => {
+			if (sec.id) sections.push(sec);
+		});
 		if (!isScrollingIntoView) {
 			sections.forEach((section) => {
-				if(section?.id?.startsWith('#')) observer.observe(section);
+				if (section?.id?.startsWith('#')) observer.observe(section);
 			});
 		}
 
@@ -50,20 +60,23 @@ const App = () => {
 	}, [isScrollingIntoView]);
 
 	return (
-      <div className='relative z-0 bg-transparent'>
-		<Navbar
+		<div className='relative z-0 bg-transparent'>
+			<Navbar
 				setIsScrollingIntoView={setIsScrollingIntoView}
 				activePosition={activeNav}
 				setActviePosition={setActiveNav}
 			/>
-          <Hero setActive={setActiveNav} setIsScrollingIntoView={setIsScrollingIntoView} />
-        <About />
-        <Experience />
-        <Works />
-          <Contact />
-          <StarsCanvas />
-      </div>
-  );
-}
+			<Hero
+				setActive={setActiveNav}
+				setIsScrollingIntoView={setIsScrollingIntoView}
+			/>
+			<About />
+			<Experience />
+			<Works />
+			<Contact />
+			<StarsCanvas />
+		</div>
+	);
+};
 
 export default App;

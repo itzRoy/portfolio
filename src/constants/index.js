@@ -13,7 +13,6 @@ import {
   mongodb,
   git,
   eurisko,
-  tripguide,
   threejs,
   codi,
   wizzo,
@@ -113,7 +112,7 @@ const projects = [
   {
     name: "Al-Qabas Masterclass",
     description:
-      `section in Al-qabas journal, Web-based e-learning platform where users can enroll in online courses.
+      `Web based e-learning platform where users can enroll in online courses.
       
       `,
     tags: [
@@ -131,7 +130,7 @@ const projects = [
   {
     name: "Wizzo Games",
     description:
-      "Web application and streaming platform for gamers.",
+      "Web application for gamers  where they can share and stream games.",
     tags: [
       {
         name: "react",

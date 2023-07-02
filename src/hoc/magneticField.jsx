@@ -104,7 +104,7 @@ const withMagneticField = (WrappedComponent) => {
 		return (
 			<div
 				ref={buttonContainer}
-				className='h-[500px] md:mt-10 flex items-center z-50'
+				className='w-full h-[100px] mt-10 md:h-[500px] md:mt-10 flex justify-start items-center z-50'
 			>
 				<WrappedComponent ref={buttonRef} />
 			</div>

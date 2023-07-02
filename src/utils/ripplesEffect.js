@@ -1,6 +1,7 @@
 function createRipple(event) {
 	const button = event.target;
 		const circle = document.createElement('span');
+		console.log(button.clientWidth, button.clientHeight);
 		const diameter = Math.max(button.clientWidth, button.clientHeight);
 		const radius = diameter / 2;
 

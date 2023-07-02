@@ -28,7 +28,7 @@ function NavbarBtn({
 				setTimeout(() => setIsScrollingIntoView(false), 500);
 			}}
 			className={classNames(
-				'draw-to-canvas px-3 py-2 rounded-3xl relative text-xl overflow-hidden transition-colors duration-[400ms] z-20',
+				'text-sm px-2 md:px-3 py-2 rounded-3xl relative md:text-xl overflow-hidden transition-colors duration-[400ms] z-20',
 				className
 			)}
 		>
