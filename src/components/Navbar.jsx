@@ -9,7 +9,7 @@ const Navbar = ({
 	setActviePosition,
 	setIsScrollingIntoView,
 }) => {
-	const initialHeight = window.innerWidth < 900 ? 50 : 90;
+	const initialHeight = window.innerWidth < 900 ? 60 : 90;
 	const { scrollY } = useScroll();
 	const height = useMotionValue(initialHeight);
 	const backgroundColor = useMotionValue('#164b60');
@@ -40,7 +40,7 @@ const Navbar = ({
 				backgroundColor,
 				opacity: initialHeight === 90 ? 1 : opacity,
 			}}
-			className='overflow-hidden flex w-screen transition ease-in duration-300 fixed left-0 inset-x-0 bg-secondaryLight py-4 md:px-4 items-center top-0 z-40'
+			className='overflow-hidden flex w-screen transition ease-in duration-300 fixed left-0 inset-x-0 bg-secondaryLight py-4 sm:px-4 justify-between md:justify-start items-center top-0 z-40'
 		>
 			<div
 				style={{
@@ -50,8 +50,8 @@ const Navbar = ({
 				}}
 				className=' animate-opacity bg-secondary z-10 absolute transition-all duration-[500ms]  rounded-3xl'
 			/>
-			{initialHeight === 90 ? (
-				<div className='w-1/2 min-w-[60px]'>
+			{window.innerWidth > 450 ? (
+				<div className='sm:w-1/2 min-w-[60px]'>
 					<img
 						className='w-[30px] md:w-[40px] min-w-0'
 						src={logo}
@@ -60,7 +60,7 @@ const Navbar = ({
 				</div>
 			) : null}
 
-			<div className='flex md:gap-4  relative px-2'>
+			<div className='flex justify-evenly md:justify-start mx-auto md:mx-0 md:gap-4 flex-1  relative px-2'>
 				<NavbarBtn
 					label='Home'
 					setActive={setActviePosition}
@@ -97,14 +97,6 @@ const Navbar = ({
 					style={{ animationDelay: '400ms' }}
 				/>
 			</div>
-
-			{/* <div className='w-1/2 min-w-[60px] justify-end'>
-			 		<img
-			 			className='ml-auto w-[30px] md:w-[40px] min-w-0'
-						src={logo}
-						alt='logo'
-					/>
-			 	</div> */}
 		</motion.div>
 	);
 };

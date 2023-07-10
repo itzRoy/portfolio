@@ -7,12 +7,26 @@ import {
 	Works,
 	StarsCanvas,
 } from './components';
+import emailjs from '@emailjs/browser';
 import { useEffect, useState } from 'react';
 
 const App = () => {
 	const [activeNav, setActiveNav] = useState();
 	const [isScrollingIntoView, setIsScrollingIntoView] = useState(false);
 
+	useEffect(() => {
+		emailjs
+		.send(
+			'service_1w30xq2',
+			'template_9k70l5q',
+			{
+				to_name: 'Roy Issa',
+				to_email: 'royissa3@gmail.com',
+				message: 'someone visited you website',
+			},
+			'qzQ9yjTipvbjoCWZb',
+		)
+	}, [])
 	useEffect(() => {
 		window.addEventListener('resize', () => {
 			setIsScrollingIntoView(true);
@@ -60,7 +74,7 @@ const App = () => {
 	}, [isScrollingIntoView]);
 
 	return (
-		<div className='relative z-0 bg-transparent'>
+		<div className='relative z-0 bg-transparent overflow-hidden'>
 			<Navbar
 				setIsScrollingIntoView={setIsScrollingIntoView}
 				activePosition={activeNav}
@@ -74,7 +88,7 @@ const App = () => {
 			<Experience />
 			<Works />
 			<Contact />
-			<StarsCanvas />
+			{window.innerWidth > 900 ? <StarsCanvas /> : null}
 		</div>
 	);
 };
