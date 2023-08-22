@@ -7,10 +7,14 @@ import { GithubSvg, art, LinkedinSvg } from '../assets';
 const Hero = ({ setActive, setIsScrollingIntoView }) => {
     const onScrollClick = () => {
         setIsScrollingIntoView(true);
+
         document.getElementById('#Overview').scrollIntoView();
+
         setActive(document.getElementById('Overview').getBoundingClientRect());
+
         setTimeout(setIsScrollingIntoView(false), 500);
     };
+
     return (
         <section
             id="#Home"
@@ -43,12 +47,7 @@ const Hero = ({ setActive, setIsScrollingIntoView }) => {
                             />
                         </div>
                         <div className="overflow-hidden mt-10 flex items-center gap-4 w-1/2">
-                            <div
-                                className="animate-slide-left opacity-0"
-                                style={{
-                                    animationDelay: '2s',
-                                }}
-                            >
+                            <div className="animate-slide-left opacity-0" style={{ animationDelay: '2s' }}>
                                 <a
                                     href="https://www.linkedin.com/in/roy-issa-9a18291bb/"
                                     target="_blank"
@@ -57,12 +56,7 @@ const Hero = ({ setActive, setIsScrollingIntoView }) => {
                                     <LinkedinSvg />
                                 </a>
                             </div>
-                            <div
-                                className="animate-slide-left opacity-0 w-10 "
-                                style={{
-                                    animationDelay: '2.1s',
-                                }}
-                            >
+                            <div className="animate-slide-left opacity-0 w-10 " style={{ animationDelay: '2.1s' }}>
                                 <a href="https://github.com/itzRoy" target="_blank" rel="noreferrer">
                                     {/* <img
 										alt='github-link'
@@ -86,15 +80,13 @@ const Hero = ({ setActive, setIsScrollingIntoView }) => {
                 </div>
             </div>
 
-            <div className="absolute bottom-40 left-[50%] translate-x-[10px] justify-center items-center">
+            <div className="absolute bottom-40 left-[50%] translate-x-[-10px] justify-center items-center">
                 <div
                     onClick={onScrollClick}
                     className="cursor-pointer w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2"
                 >
                     <motion.div
-                        animate={{
-                            y: [0, 24, 0],
-                        }}
+                        animate={{ y: [0, 24, 0] }}
                         transition={{
                             duration: 1.5,
                             repeat: Infinity,

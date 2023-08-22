@@ -28,6 +28,7 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         setLoading(true);
 
         emailjs
@@ -46,6 +47,7 @@ const Contact = () => {
             .then(
                 () => {
                     setLoading(false);
+
                     alert('Thanks for contacting me. I will get back to you as soon as possible.');
 
                     setForm({
@@ -56,7 +58,6 @@ const Contact = () => {
                 },
                 (error) => {
                     setLoading(false);
-                    console.error(error);
 
                     alert('Ahh, something went wrong. Please try again.');
                 },

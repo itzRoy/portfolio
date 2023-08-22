@@ -8,38 +8,30 @@ import { projects } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import ProjectCard from './ProjectCard';
 
-const Works = () => {
-	return (
-		<>
-			<section id='#Projects'>
-				<motion.div variants={textVariant()}>
-					<p className={`${styles.sectionSubText} `}>My work</p>
-					<h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-				</motion.div>
+const Works = ({ data }) => {
+    const { title1, title2, content, cards } = data;
 
-				<div className='w-full flex'>
-					<motion.p
-						variants={fadeIn('', '', 0.1, 1)}
-						className='mt-3 text-[17px] max-w-3xl leading-[30px]'
-					>
-						Following projects showcases my skills and experience through
-						real-world examples of my work. It reflects my ability to solve
-						complex problems, work with different technologies, and manage
-						projects effectively.
-					</motion.p>
-				</div>
-			</section>
-			<div className='justify-center md:justify-start mt-20 flex flex-wrap gap-7'>
-				{projects.map((project, index) => (
-					<ProjectCard
-						key={`project-${index}`}
-						index={index}
-						{...project}
-					/>
-				))}
-			</div>
-		</>
-	);
+    return (
+        <>
+            <section id="#Projects">
+                <motion.div variants={textVariant()}>
+                    <p className={`${styles.sectionSubText} `}>{title1}</p>
+                    <h2 className={`${styles.sectionHeadText}`}>{title2}</h2>
+                </motion.div>
+
+                <div className="w-full flex">
+                    <motion.p variants={fadeIn('', '', 0.1, 1)} className="mt-3 text-[17px] max-w-3xl leading-[30px]">
+                        {content}
+                    </motion.p>
+                </div>
+            </section>
+            <div className="justify-center md:justify-start mt-20 flex flex-wrap gap-7">
+                {cards.map((project, index) => (
+                    <ProjectCard key={`project-${index}`} index={index} {...project} />
+                ))}
+            </div>
+        </>
+    );
 };
 
 export default SectionWrapper(Works, '');
